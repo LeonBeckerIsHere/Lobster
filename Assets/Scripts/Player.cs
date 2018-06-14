@@ -5,14 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour {
 	Controller2D controller;
+	ObjectCharacteristics objCharacteristics;
 	Vector3 velocity;
 	Vector2 directionalInput;
-	float moveSpeed = 6f;
 
 
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<Controller2D>();
+		objCharacteristics = GetComponent<ObjectCharacteristics>();
 	}
 	
 	// Update is called once per frame
@@ -22,8 +23,8 @@ public class Player : MonoBehaviour {
 	}
 
 	void CalculateVelocity(){
-		velocity.x = directionalInput.x * moveSpeed;
-		velocity.y = directionalInput.y * moveSpeed;
+		velocity.x = directionalInput.x * objCharacteristics.moveSpeed;
+		velocity.y = objCharacteristics.gravity * Time.deltaTime;
 	}
 
 	public void SetDirectionalInput(Vector2 input){

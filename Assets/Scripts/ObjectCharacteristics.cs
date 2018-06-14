@@ -19,9 +19,9 @@ public class ObjectCharacteristics : MonoBehaviour {
 	public float wallSlideSpeedMax = 3;
 	public float wallStickTime = .25f;
 
-	float gravity;
-	float minJumpVelocity;
-	float maxJumpVelocity;
+	public float gravity;
+	public float minJumpVelocity;
+	public float maxJumpVelocity;
 
 	void Start(){
 		gravity = -(2*maxJumpHeight) / Mathf.Pow(timeToJumpApex,2);
