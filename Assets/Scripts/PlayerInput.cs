@@ -3,10 +3,16 @@ using System.Collections;
 
 public class PlayerInput : MonoBehaviour
 {
-    void Update(){
+	public Player player;
+
+	void Start(){
+		player = GetComponent<Player>();
+	}
+
+	void Update(){
 
         Vector2 directionalInput = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Debug.Log("Moving in direction: " + directionalInput.x + ", "+ directionalInput.y);
+        player.SetDirectionalInput(directionalInput);
         if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log("Space key pressed");
         }
