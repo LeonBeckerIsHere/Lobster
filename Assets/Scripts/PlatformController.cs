@@ -122,6 +122,26 @@ public class PlatformController :RaycastController {
                         float pushX = (directionY == 1)?velocity.x:0;
                         float pushY = velocity.y - (hit.distance - skinWidth) * directionY;
 
+                        passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX,pushY), directionY==1, true));
+                    }
+                }
+            }
+        }
+
+        if(velocity.x != 0){
+            float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+            for(int i = 0; i < horizontalRayCount; ++i){
+                Vector2 rayOrigin = (directionX == -1)?boundVertices.bottomLeft:boundVertices.bottomRight;
+                rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, passengerMask);
+
+                if(hit && hit.distance != 0){
+                    if(!movedPassengers.Contains(hit.transform)){
+                        movedPassengers.Add(hit.transform);
+                        float pushX = velocity.x - (hit.distance-skinWidth) *directionX;
+                        float pushY = -skinWidth;
+
                         passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX,pushY), false, true));
                     }
                 }
@@ -137,7 +157,7 @@ public class PlatformController :RaycastController {
 
                 if(hit && hit.distance != 0){
                     if(!movedPassengers.Contains(hit.transform)){
-                        movedPassengers.Contains(hit.transform);
+                        movedPassengers.Add(hit.transform);
                         float pushX = velocity.x;
                         float pushY = velocity.y;
            

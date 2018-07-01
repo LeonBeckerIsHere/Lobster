@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObjectCharacteristics : MonoBehaviour {
 
+    public bool wallSliding;
+    public int wallDirX;
+
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
     public Vector2 wallLeap;
@@ -16,6 +19,7 @@ public class ObjectCharacteristics : MonoBehaviour {
 
     public float moveSpeed = 6;
 
+    public float timeToWallUnstick;
     public float wallSlideSpeedMax = 3;
     public float wallStickTime = .25f;
 

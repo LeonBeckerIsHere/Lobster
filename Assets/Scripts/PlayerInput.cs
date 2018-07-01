@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(Player))]
 public class PlayerInput : MonoBehaviour{
 
     [HideInInspector]
@@ -16,10 +17,10 @@ public class PlayerInput : MonoBehaviour{
         player.SetDirectionalInput(directionalInput);
 
         if(Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log("Space key pressed");
+            player.JumpInputDown();
         }
         if(Input.GetKeyUp(KeyCode.Space)){
-            Debug.Log("Space key released");
+            player.JumpInputUp();
         }
     }
 }
