@@ -269,7 +269,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -649,6 +649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f58fcf6551b77042a136d74aecd8312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleRef: {fileID: 1409557195186752, guid: 65bbe53c7a5e23b40806fc4a9256ca8d, type: 2}
+  bubbleRate: 0.1
 --- !u!114 &1390548493
 MonoBehaviour:
   m_ObjectHideFlags: 0

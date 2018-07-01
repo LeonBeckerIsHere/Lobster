@@ -4,16 +4,23 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectCharacteristics))]
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour {
+
+    public GameObject bubbleRef;
+    public float bubbleRate;
+    float timeTillNextBubble;
+
     Controller2D controller;
     ObjectCharacteristics objCharacteristics;
     Vector3 velocity;
     Vector2 directionalInput;
-
+    float dirX;
 
     // Use this for initialization
     void Start () {
         controller = GetComponent<Controller2D>();
         objCharacteristics = GetComponent<ObjectCharacteristics>();
+        timeTillNextBubble = bubbleRate;
+        dirX = 1;
     }
 
     // Update is called once per frame
@@ -35,6 +42,8 @@ public class Player : MonoBehaviour {
 
     public void SetDirectionalInput(Vector2 input){
         directionalInput = input;
+        if(input.x != 0)
+            dirX = input.x;
     }
 
     public void JumpInputDown(){
@@ -61,6 +70,24 @@ public class Player : MonoBehaviour {
         if(velocity.y > objCharacteristics.minJumpVelocity){
             velocity.y = objCharacteristics.minJumpVelocity;
         }
+    }
+
+    public void ShootBubbles(){
+        if(timeTillNextBubble <= 0){
+            GameObject b1 = Instantiate(bubbleRef, transform.position, transform.rotation);
+            GameObject b2 = Instantiate(bubbleRef, transform.position, transform.rotation);
+            GameObject b3 = Instantiate(bubbleRef, transform.position, transform.rotation);
+
+            b1.SendMessage("TrueStart", dirX);
+            b2.SendMessage("TrueStart", dirX);
+            b3.SendMessage("TrueStart", dirX);
+
+            timeTillNextBubble = bubbleRate;
+        }
+        else{
+            timeTillNextBubble -= Time.deltaTime;
+        }
+
     }
 
     void HandleWallSliding(){

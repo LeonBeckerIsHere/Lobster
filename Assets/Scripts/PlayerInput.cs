@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour{
     [HideInInspector]
     public Player player;
 
+
+
     void Start(){
         player = GetComponent<Player>();
     }
@@ -22,5 +24,11 @@ public class PlayerInput : MonoBehaviour{
         if(Input.GetKeyUp(KeyCode.Space)){
             player.JumpInputUp();
         }
+
+        if(Input.GetKey(KeyCode.Q)){
+            player.ShootBubbles();
+        }
     }
+
+
 }
